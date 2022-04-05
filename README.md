@@ -1,4 +1,4 @@
-# powercord-rblxfilter
+# powercord-rblx-filter
 roblox filtering but for powercord!
 
 ### Commands
