@@ -100,7 +100,7 @@ module.exports = class RbxFilter extends Plugin {
         const filterAttempt = await filterText(args.join(' '), getCookie());
 
         if (filterAttempt.error)
-          sendClydeMessage({
+          return sendClydeMessage({
             title: 'your message could not be filtered by roblox',
             description: `${filterAttempt.message}`,
             color: 16734296
