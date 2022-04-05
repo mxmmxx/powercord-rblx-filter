@@ -78,7 +78,7 @@ module.exports = class RbxFilter extends Plugin {
             if (filterAttempt.success) {
               args[1].content = filterAttempt.text;
             } else {
-              sendClydeMessage({
+              return sendClydeMessage({
                 title: 'your message could not be filtered by roblox',
                 description: `${filterAttempt.message}`,
                 color: 16734296
