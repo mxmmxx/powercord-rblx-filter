@@ -64,8 +64,6 @@ module.exports = class RbxFilter extends Plugin {
         const powercordPrefix = powercord.api.commands.prefix;
         const startsWithPrefix = args[1].content.startsWith(powercordPrefix);
 
-        console.log(args);
-
         if (forceEnabled && !startsWithPrefix && !args[1].__FILTERED__) {
           let text = args[1].content;
           args[1].__FILTERED__ = true;
