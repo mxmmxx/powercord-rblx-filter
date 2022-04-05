@@ -20,7 +20,6 @@ const filterText = async (text, rbxcookie) => new Promise(resolve => {
     });
   })
   .catch(async error => {
-    console.log(error.headers, error.body, error.status);
     const {body, headers} = error;
 
     if (!body || !body.errors || body.errors.length < 1) return resolve({
@@ -33,8 +32,6 @@ const filterText = async (text, rbxcookie) => new Promise(resolve => {
       error: true,
       message: robloxError.message
     })
-
-    console.log(robloxError.message)
 
     CSRF_TOKEN = headers['x-csrf-token'];
     return resolve(await filterText(text, rbxcookie));
@@ -75,18 +72,20 @@ module.exports = class RbxFilter extends Plugin {
 
           filterText(text, getCookie())
           .then(filterAttempt => {
-            if (filterAttempt.success) {
+            if (filterAttempt.success)
               args[1].content = filterAttempt.text;
-            } else {
-              return sendClydeMessage({
-                title: 'your message could not be filtered by roblox',
-                description: `${filterAttempt.message}`,
-                color: 16734296
-              })
-            }
+            else return sendClydeMessage({
+              title: 'your message could not be filtered by roblox',
+              description: `${filterAttempt.message}`,
+              color: 16734296
+            })
 
-            const messageArgs = { ...args[1] };
-            messageEvents.sendMessage(args[0], messageArgs);
+            messageEvents.sendMessage(
+              args[0],        // channel id
+              { ...args[1] }, // message content 
+              args[2],        // no idea
+              { ...args[3] }  // mentioned message
+            );
           })
           return false;
         } else return args;
