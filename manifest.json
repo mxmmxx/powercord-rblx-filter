@@ -1,0 +1,8 @@
+{
+  "name": "Roblox Filtering",
+  "version": "1.0.0",
+  "description": "Filters your messages through Roblox's text filter",
+  "author": "mxmx#1234",
+  "permissions": [ "ext_api" ],
+  "license": "MIT"
+}
